@@ -2,6 +2,7 @@ package sms.app;
 
 import java.util.Scanner;
 import sms.action.Action;
+import sms.action.*;
 import sms.controller.StudentController;
 
 public class appUi{
@@ -54,16 +55,20 @@ public class appUi{
 			if(input > 6 || input < 1)
 				System.out.println("잘못된 입력입니다.");
 			switch(input) {
-			case 1 :
-//				action = new stuAddAction();
+			case 1:
+				action = new stuAddAction();
 				break;
-			case 2 :
+			case 2:
+				action = new stuListAction();
 				break;
-			case 3 :
+			case 3:
+				//action = new strSearchAction();
 				break;
-			case 4 :
+			case 4:
+				//action = new strModifyAction();
 				break;
-			case 5 :
+			case 5:
+				//action = new strDeleteAction();
 				break;
 			case 6 :
 				return;
@@ -89,18 +94,27 @@ public class appUi{
 			if(input > 6 || input < 1)
 				System.out.println("잘못된 입력입니다.");
 			switch(input) {
-			case 1 :
+			case 1:
+//				action = new stuAddAction();
 				break;
-			case 2 :
+			case 2:
+//				action = new stuListAction();
 				break;
-			case 3 :
+			case 3:
+				//action = new strSearchAction();
 				break;
-			case 4 :
+			case 4:
+				//action = new strModifyAction();
 				break;
-			case 5 :
+			case 5:
+				//action = new strDeleteAction();
 				break;
-			case 6 :
+			case 6:
+				System.out.println("첫 화면으로 나갑니다.");
 				return;
+			default:
+				System.out.println("잘못된 입력입니다.");
+				break;
 			}
 		}
 	}

@@ -2,6 +2,7 @@ package sms.action;
 
 import java.util.Scanner;
 import sms.service.*;
+import sms.view.ConsoleView;
 import sms.dto.Student;
 
 public class stuAddAction implements Action{
@@ -12,7 +13,7 @@ public class stuAddAction implements Action{
 	@Override
 	public void execute(Scanner sc) throws Exception {
 		//학번 입력 받기
-		int stu_no = view.getStudentNo(sc);
+		int stu_no = view.getStudentNo(sc,"등록할 학번");
 		
 		//학번으로 중복검사
 		boolean isRegisted = stuAddService.searchStudent(stu_no);
@@ -25,6 +26,12 @@ public class stuAddAction implements Action{
 		Student newStudent = view.addNewStudent(stu_no, sc);
 		
 		//날짜형식체크
+		String unfitForm = stuAddService.compareBirthForm(newStudent);
+		
+		if(unfitForm != null){
+			view.printUnfitForm(unfitForm);
+			return;
+		}
 		
 		boolean isRegistStudent = stuAddService.addStudent(newStudent);
 		
@@ -33,5 +40,5 @@ public class stuAddAction implements Action{
 		}else {
 			view.printAddFail(newStudent);
 		}
-	
+	}
 }
