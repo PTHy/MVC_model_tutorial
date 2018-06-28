@@ -14,7 +14,8 @@ public class JDBCUtil {
 	public static Connection getConnection() {
 		Connection con = null;
 		try {
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/database","root","password");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/han_java?useSSL=false","root","password");
+			con.setAutoCommit(false);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

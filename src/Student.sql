@@ -17,7 +17,7 @@ CREATE TABLE Grade(
 	grade_math INT NOT NULL,
 	PRIMARY KEY(stu_no),
 	CONSTRAINT grade_stu_no_fk
-	FOREIGN KEY(stu_no) REFERENCES Student(stu_no)
+	FOREIGN KEY(stu_no) REFERENCES Student(stu_no) ON DELETE CASCADE
 ) default character set utf8 collate utf8_general_ci ;
 
 drop table grade;

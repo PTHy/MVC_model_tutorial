@@ -34,8 +34,11 @@ public class appUi{
 				showGradeMenu();
 				break;
 			case 3 :
+				System.out.println("프로그램을 종료합니다...");
 				System.exit(0);
 				break;
+			default :
+				System.out.println("잘못된 입력입니다");
 			}
 		}
 	}
@@ -62,16 +65,51 @@ public class appUi{
 				action = new stuListAction();
 				break;
 			case 3:
-				//action = new strSearchAction();
+				showSearchMenu();
 				break;
 			case 4:
-				//action = new strModifyAction();
+				action = new stuModifyAction();
 				break;
 			case 5:
-				//action = new strDeleteAction();
+				action = new stuDeleteAction();
 				break;
 			case 6 :
+				System.out.println("첫 화면으로 나갑니다.");
 				return;
+			default :
+				System.out.println("잘못된 입력입니다");
+			}
+			if(action != null) {
+				stuController.requestProcess(action, sc);
+			}
+		}
+	}
+	
+	public static void showSearchMenu() {
+		while(true) {
+			System.out.println("----------<학생정보 검색>----------");
+			System.out.println("          1. 이름으로 검색");
+			System.out.println("          2. 학번으로 검색");
+			System.out.println("          3. 학년으로 검색");
+			System.out.println("          4. 검색 취소");
+			System.out.print("      선택:");
+			input = sc.nextInt();
+			switch(input) {
+			case 1:
+				action = new stuSearchAction(input);
+				break;
+			case 2:
+				action = new stuSearchAction(input);
+				break;
+			case 3:
+				action = new stuSearchAction(input);
+				break;
+			case 4:
+				action = null;
+				System.out.println("검색을 취소합니다.");
+				return;
+			default:
+				System.out.println("잘못된 입력입니다.");
 			}
 			if(action != null) {
 				stuController.requestProcess(action, sc);
@@ -114,7 +152,7 @@ public class appUi{
 				return;
 			default:
 				System.out.println("잘못된 입력입니다.");
-				break;
+				return;
 			}
 		}
 	}

@@ -1,18 +1,30 @@
 package sms.view;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import sms.dto.Student;
 
 public class ConsoleView {
 	
-	public int getStudentNo(Scanner sc, String msg) {
+	public String getStudentNo(Scanner sc, String msg) {
 		System.out.println("\n> "+msg+" : ");
-		return sc.nextInt();
+		return sc.next();
 	}
 
 	public void printRegistedStudent(int stu_no) {
-		System.out.println("이미 등록된 학생입니다.");
+		System.out.println("> 이미 등록된 학생입니다.");
+	}
+	
+	public void showAllStudents(ArrayList<Student> students) {
+		int cnt = 1;
+		System.out.println("\n> 총"+students.size()+"명의 학생을 조회합니다.");
+		System.out.println("    학번        이름        학년        주소                전화번호        생년월일");
+		
+		for(Student student : students) {
+			System.out.println(cnt+"."+student.getStu_no()+" "+student.getStu_name()+" "+student.getStu_year()+" "+student.getStu_addr()+" "+student.getStu_tel()+" "+student.getStu_birth()+" ");
+			cnt++;
+		}
 	}
 
 	public Student addNewStudent(int stu_no, Scanner sc) {
@@ -35,16 +47,36 @@ public class ConsoleView {
 	}
 
 	public void printAddSuccess(Student newStudent) {
-		System.out.println("학번 "+newStudent.getStu_no()+" 학생의 정보가 등록되었습니다.");
+		System.out.println("> 학번 : "+newStudent.getStu_no()+" 학생의 정보가 등록되었습니다.");
 	}
 
 	public void printAddFail(Student newStudent) {
 		// TODO Auto-generated method stub
-		System.out.println("학번 "+newStudent.getStu_no()+" 학생의 정보가 등록이 실패했습니다.");
+		System.out.println("> 학번 : "+newStudent.getStu_no()+" 학생의 정보가 등록이 실패했습니다.");
 	}
 	
 	public void printUnfitForm(String unfitForm) {
 		System.out.println("> 생년월일: "+unfitForm+" 이 형식에 맞지 않습니다."
 				+ "(예시: 2001-01-01)");
+	}
+	
+	public void studentNotFound() {
+		System.out.println("> 찾는 학생이 존재하지 않습니다.");
+	}
+
+	public void printDeleteSuccess(int stu_no) {
+		System.out.println("> 학번 : "+stu_no+" 학생의 정보가 삭제되었습니다.");
+	}
+
+	public void printDeleteFail(int stu_no) {
+		System.out.println("> 학번 : "+stu_no+" 학생의 정보가 삭제에 실패하였습니다.");
+	}
+
+	public void printModifySuccess(Student student) {
+		System.out.println("> 학번 : "+student.getStu_no()+" 학생의 정보가 수정되었습니다.");
+	}
+
+	public void printModifyFail(Student student) {
+		System.out.println("> 학번 : "+student.getStu_no()+" 학생의 정보가 수정에 실패하였습니다.");
 	}
 }

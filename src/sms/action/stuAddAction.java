@@ -13,7 +13,7 @@ public class stuAddAction implements Action{
 	@Override
 	public void execute(Scanner sc) throws Exception {
 		//학번 입력 받기
-		int stu_no = view.getStudentNo(sc,"등록할 학번");
+		int stu_no = Integer.parseInt(view.getStudentNo(sc,"등록할 학번"));
 		
 		//학번으로 중복검사
 		boolean isRegisted = stuAddService.searchStudent(stu_no);

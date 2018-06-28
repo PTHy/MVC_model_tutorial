@@ -9,11 +9,9 @@ import java.util.Calendar;
 import static sms.db.JDBCUtil.*;
 import sms.dto.Student;
 import sms.model.StudentDAO;
-import sms.view.*;
 
 public class StudentAddService {
-	
-	ConsoleView view = new ConsoleView();
+
 	
 	public boolean searchStudent(int stu_no) {
 		boolean isRegisted = false;
