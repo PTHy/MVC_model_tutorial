@@ -5,11 +5,10 @@ public class Grade {
 	private int grade_kor;
 	private int grade_eng;
 	private int grade_math;
-	private String stu_name;
 	
 	@Override
 	public String toString() {
-		return "학번 : "+stu_no+" 이름 : "+stu_name+" 국어 : "+grade_kor+" 영어 : "+grade_eng+" 수학 : "+grade_math+" 합계 : "+sum()+" 평균 : "+avg();
+		return "학번 : "+stu_no+" 국어 : "+grade_kor+" 영어 : "+grade_eng+" 수학 : "+grade_math+" 합계 : "+sum()+" 평균 : "+avg();
 	}
 
 	public int getStu_no() {
@@ -44,21 +43,12 @@ public class Grade {
 		this.grade_math = grade_math;
 	}
 
-	public String getStu_name() {
-		return stu_name;
-	}
-
-	public void setStu_name(String stu_name) {
-		this.stu_name = stu_name;
-	}
-
-	public Grade(int stu_no, int grade_kor, int grade_eng, int grade_math, String stu_name) {
+	public Grade(int stu_no, int grade_kor, int grade_eng, int grade_math) {
 		super();
 		this.stu_no = stu_no;
 		this.grade_kor = grade_kor;
 		this.grade_eng = grade_eng;
 		this.grade_math = grade_math;
-		this.stu_name = stu_name;
 	}
 	
 	public int sum() {

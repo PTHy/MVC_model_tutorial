@@ -133,19 +133,19 @@ public class appUi{
 				System.out.println("잘못된 입력입니다.");
 			switch(input) {
 			case 1:
-//				action = new stuAddAction();
+				action = new gradeAddAction();
 				break;
 			case 2:
-//				action = new stuListAction();
+				action = new gradeListAction();
 				break;
 			case 3:
-				//action = new strSearchAction();
+				action = new gradeSearchAction();
 				break;
 			case 4:
-				//action = new strModifyAction();
+				action = new gradeModifyAction();
 				break;
 			case 5:
-				//action = new strDeleteAction();
+				action = new gradeDeleteAction();
 				break;
 			case 6:
 				System.out.println("첫 화면으로 나갑니다.");
@@ -153,6 +153,9 @@ public class appUi{
 			default:
 				System.out.println("잘못된 입력입니다.");
 				return;
+			}
+			if(action != null) {
+				stuController.requestProcess(action, sc);
 			}
 		}
 	}

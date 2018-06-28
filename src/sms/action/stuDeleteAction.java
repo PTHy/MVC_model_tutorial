@@ -15,7 +15,7 @@ public class stuDeleteAction implements Action{
 	
 	@Override
 	public void execute(Scanner sc) throws Exception {
-		int stu_no = view.getStudentNo(sc, "삭제할 학생");
+		int stu_no = Integer.parseInt(view.getStudentNo(sc, "삭제할 학생"));
 		boolean isExit = stuAddService.searchStudent(stu_no);
 		
 		if(!isExit) {
