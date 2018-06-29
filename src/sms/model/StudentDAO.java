@@ -91,8 +91,13 @@ public class StudentDAO {
 	public int deleteStudent(int stu_no) {
 		int chk = 0;
 		PreparedStatement pstmt = null;
-		String sql = "DELETE FROM student WHERE stu_no = ?;";		
+		String sql = "DELETE FROM grade WHERE stu_no = ?;";
 		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, stu_no);
+			pstmt.executeUpdate();
+			
+			sql = "DELETE FROM student WHERE stu_no = ?;";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, stu_no);
 			chk = pstmt.executeUpdate();
@@ -106,13 +111,15 @@ public class StudentDAO {
 
 	public ArrayList<Student> searchStudents(int type,String input) {
 		ArrayList<Student> students = new ArrayList<>();
+		boolean isName = false;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "SELECT * FROM student WHERE ";
 		
 		switch (type) {
 		case 1:
-			sql += "stu_name = '"+input+"';";
+			sql += "stu_name LIKE ?;";
+			isName = true;
 			break;
 		case 2:
 			sql += "stu_no = "+Integer.parseInt(input)+";";
@@ -121,11 +128,13 @@ public class StudentDAO {
 			sql += "stu_year = "+Integer.parseInt(input)+";";
 			break;
 		}
-		
-		System.out.println("sql = "+sql);
-		
+				
 		try {
 			pstmt = con.prepareStatement(sql);
+			if(isName) {
+				pstmt.setString(1, "%" + input + "%");
+			}
+			
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {

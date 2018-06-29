@@ -9,6 +9,7 @@ public class gradeAddAction implements Action{
 	
 	ConsoleView view = new ConsoleView();
 	GradeAddService gradeAddService = new GradeAddService();
+	StudentAddService studentAddService = new StudentAddService();
 	
 	@Override
 	public void execute(Scanner sc) throws Exception {
@@ -18,17 +19,22 @@ public class gradeAddAction implements Action{
 		//학번으로 중복검사
 		boolean isRegisted = gradeAddService.searchGrade(stu_no);
 		
+		boolean isExit = studentAddService.searchStudent(stu_no);
+		
 		if(isRegisted) {
 			view.printRegistedGrade(stu_no);
 			return;
 		}
 		
-		//새로운 확생을 view를 통해 입력받음
+		if(!isExit) {
+			view.studentNotFound();
+			return;
+		}
+		
+		//새로운 성적을 view를 통해 입력받음
 		Grade newGrade = view.addNewGrade(stu_no, sc);
 		
 		boolean isRegistGrade = gradeAddService.addGrade(newGrade);
-		
-		
 		
 		if(isRegistGrade){
 			view.printAddSuccessGrade(newGrade);

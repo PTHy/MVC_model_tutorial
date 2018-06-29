@@ -132,4 +132,20 @@ public class GradeDAO {
 		}
 		return chk;
 	}
+
+	public int deleteGrade(int stu_no) {
+		int chk = 0;
+		PreparedStatement pstmt = null;
+		String sql = "DELETE FROM grade WHERE stu_no = ?;";		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, stu_no);
+			chk = pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return chk;
+	}
 }

@@ -126,4 +126,12 @@ public class ConsoleView {
 	public void printModifyFailGrade(Grade grade) {
 		System.out.println("> 학번 : "+grade.getStu_no()+" 학생의 정보가 수정에 실패하였습니다.");
 	}
+
+	public void printDeleteSuccessGrade (int stu_no) {
+		System.out.println("> 학번 : "+stu_no+" 학생의 성적 정보가 삭제되었습니다.");
+	}
+
+	public void printDeleteFailGrade(int stu_no) {
+		System.out.println("> 학번 : "+stu_no+" 학생의 성적 정보가 삭제에 실패하였습니다.");
+	}
 }
